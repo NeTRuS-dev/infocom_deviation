@@ -8,7 +8,7 @@ namespace app\models;
  * @package app\models
  * @property-read int rowSize
  */
-class RowGeneratorForm extends \yii\base\Model
+class RowGeneratorForm extends \yii\base\Model implements IRowWorker
 {
     public string $notFormattedrowSize;
     private int $row_size;
@@ -28,7 +28,7 @@ class RowGeneratorForm extends \yii\base\Model
         $this->row_size = intval($this->notFormattedrowSize);
     }
 
-    public function generateRow()
+    private function generateRow()
     {
         $result = [];
         for ($i = 0; $i < $this->row_size; $i++) {
@@ -43,5 +43,10 @@ class RowGeneratorForm extends \yii\base\Model
     public function getRowSize()
     {
         return $this->row_size;
+    }
+
+    public function getRow(): array
+    {
+       return $this->generateRow();
     }
 }

@@ -8,7 +8,7 @@ namespace app\models;
  * @package app\models
  * @property-read int[] formattedRow
  */
-class RowInputForm extends \yii\base\Model
+class RowInputForm extends \yii\base\Model implements IRowWorker
 {
     public string $notFormattedRow;
     private array $formatted_row;
@@ -32,8 +32,13 @@ class RowInputForm extends \yii\base\Model
         $this->formatted_row = array_map('intval', explode(',', str_replace(' ', '', $this->notFormattedRow)));
     }
 
-    public function getFormattedRow()
+    private function getFormattedRow()
     {
         return $this->formatted_row;
+    }
+
+    public function getRow(): array
+    {
+        return $this->getFormattedRow();
     }
 }
