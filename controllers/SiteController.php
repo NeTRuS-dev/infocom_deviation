@@ -46,9 +46,7 @@ class SiteController extends Controller
             $row = $row_worker->getRow();
             $result = $calc->calculate($row);
             return $this->render('success', [
-                'row' => implode(', ', array_map(function ($item) {
-                    return $item[0];
-                }, $row)),
+                'row' => implode(', ', array_column($row, 0)),
                 'result' => $result
             ]);
         } else {
@@ -67,9 +65,7 @@ class SiteController extends Controller
             $row = $row_worker->getRow();
             $result = $calc->calculate($row);
             return $this->render('success', [
-                'row' => implode(', ', array_map(function ($item) {
-                    return $item[0];
-                }, $row)),
+                'row' => implode(', ', array_column($row, 0)),
                 'result' => $result
             ]);
 
