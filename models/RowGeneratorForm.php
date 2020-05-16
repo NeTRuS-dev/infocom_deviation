@@ -13,12 +13,25 @@ class RowGeneratorForm extends \yii\base\Model implements IRowWorker
     public string $notFormattedrowSize;
     private int $row_size;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->notFormattedrowSize = '';
+    }
+
     public function rules()
     {
         return [
             ['notFormattedrowSize', 'trim'],
             ['notFormattedrowSize', 'required'],
             ['notFormattedrowSize', 'integer']
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'notFormattedrowSize' => 'Длина генерируемого ряда'
         ];
     }
 
@@ -47,6 +60,6 @@ class RowGeneratorForm extends \yii\base\Model implements IRowWorker
 
     public function getRow(): array
     {
-       return $this->generateRow();
+        return $this->generateRow();
     }
 }

@@ -15,7 +15,7 @@ $this->title = 'Результаты';
         <div class="h3"><?= Html::encode($row) ?></div>
         <div class="h3">Результат</div>
         <div class="h3"><?= Html::encode($result) ?></div>
-        <?= Html::a('Вычислить новый ряд', 'site/index') ?>
+        <?= Html::a('Вычислить новый ряд', 'site/index', ['class' => 'btn btn-primary']) ?>
     </div>
 </div>
 

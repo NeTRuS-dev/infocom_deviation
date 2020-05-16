@@ -13,32 +13,37 @@ use yii\helpers\Url;
 
 $this->title = 'Отклонение';
 ?>
-<div class="row no-gutters">
-    <div class="col-5 offset-2">
-        <div class="h1">Вычисление ряда онлайн</div>
-        <div class="row no-gutters">
-            <div class="col-6">
+<div class="row no-gutters justify-content-center align-items-center h-100">
+    <div class="d-flex flex-column w-75">
+        <div class="h1 text-center">Вычисление ряда онлайн</div>
+        <div class="row no-gutters mt-5">
+            <div class="col pl-5 pr-5">
                 <?php $form1 = ActiveForm::begin([
                     'method' => 'POST',
                     'action' => ['site/inputed-row']]); ?>
 
-                <?= $form1->field($rowInput, 'notFormattedRow', ['placeholder' => 'Введите ряд через запятую'])->label('Введите временной ряд') ?>
+                <?= $form1->field($rowInput, 'notFormattedRow')
+                    ->input('text', ['placeholder' => 'Введите ряд через запятую', 'class' => 'form-control mb-3'])
+                    ->label('Введите временной ряд', ['class' => 'w-100 text-center mb-3']) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Вычислить ряд') ?>
+                    <?= Html::submitButton('Вычислить ряд', ['class' => 'btn btn-primary ml-auto mr-auto mb-3 d-flex']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>
             </div>
-            <div class="col-6">
+            <div class="col pl-5 pr-5">
+                <div class="h2 text-center mb-3">Или</div>
                 <?php $form2 = ActiveForm::begin([
                     'method' => 'POST',
                     'action' => ['site/random-row']]); ?>
 
-                <?= $form2->field($rowGenerator, 'notFormattedrowSize', ['placeholder' => 'Введите длину ряда']) ?>
+                <?= $form2->field($rowGenerator, 'notFormattedrowSize')
+                    ->input('text', ['placeholder' => 'Введите длину ряда', 'class' => 'form-control mb-3'])
+                    ->label('Введите длину ряда', ['class' => 'w-100 text-center mb-3']) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Сгенерировать запрос') ?>
+                    <?= Html::submitButton('Сгенерировать запрос', ['class' => 'btn btn-primary ml-auto mr-auto mb-3 d-flex']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>
