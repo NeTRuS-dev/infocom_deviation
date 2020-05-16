@@ -5,9 +5,10 @@ namespace app\models;
 
 
 use Yii;
+use yii\base\Model;
 use yii\db\Exception;
 
-class RowCalculator extends \yii\base\Model
+class RowCalculator extends Model
 {
     /**
      * @param int[] $row
@@ -19,7 +20,7 @@ class RowCalculator extends \yii\base\Model
         try {
             Yii::$app->db->createCommand()->batchInsert('rows', ['value'], $row)->execute();
 
-            $result = Yii::$app->db->createCommand('EXEC calculate')->queryScalar();
+            $result = floatval(Yii::$app->db->createCommand('EXEC calculate')->queryScalar());
         } catch (Exception $e) {
         }
         return $result;

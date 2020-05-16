@@ -9,7 +9,7 @@ CREATE TABLE [rows]
     );
 GO
 
-CREATE PROCEDURE [DeviationDB].[calculate]
+CREATE PROCEDURE [calculate]
 AS
 DECLARE @n int;
 DECLARE @SigmaFromPure float;
@@ -27,9 +27,9 @@ SET @m=(SELECT @SigmaFromPure/@n);
 SET @a2=(SELECT @SigmaFromPow/@n);
 SET @D=(SELECT @a2-(@m*@m));
 TRUNCATE TABLE [rows];
-SELECT @D;
+SELECT SQRT(@D);
 GO
 
 -- using
-EXEC [DeviationDB].[calculate];
+EXEC [calculate];
 GO

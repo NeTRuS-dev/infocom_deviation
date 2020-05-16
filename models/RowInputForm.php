@@ -3,12 +3,14 @@
 
 namespace app\models;
 
+use yii\base\Model;
+
 /**
  * Class RowInputForm
  * @package app\models
  * @property-read int[] formattedRow
  */
-class RowInputForm extends \yii\base\Model implements IRowWorker
+class RowInputForm extends Model implements IRowWorker
 {
     public string $notFormattedRow;
     private array $formatted_row;
@@ -42,7 +44,9 @@ class RowInputForm extends \yii\base\Model implements IRowWorker
 
     private function parseRow()
     {
-        $this->formatted_row = array_map('array', array_map('intval', explode(',', str_replace(' ', '', $this->notFormattedRow))));
+        $this->formatted_row = array_map(function ($item) {
+            return [$item];
+        }, array_map('intval', explode(',', str_replace(' ', '', $this->notFormattedRow))));
     }
 
     private function getFormattedRow()
