@@ -17,10 +17,10 @@ $this->title = 'Отклонение';
     <div class="d-flex flex-column w-75">
         <div class="h1 text-center">Вычисление ряда онлайн</div>
         <div class="row no-gutters mt-5">
-            <div class="col pl-5 pr-5">
+            <div class="col-5 pl-5 pr-5">
                 <?php $form1 = ActiveForm::begin([
                     'method' => 'POST',
-                    'action' => ['site/inputed-row']]); ?>
+                    'action' => ['/inputted']]); ?>
 
                 <?= $form1->field($rowInput, 'notFormattedRow')
                     ->input('text', ['placeholder' => 'Введите ряд через запятую', 'class' => 'form-control mb-3'])
@@ -32,11 +32,13 @@ $this->title = 'Отклонение';
 
                 <?php ActiveForm::end(); ?>
             </div>
-            <div class="col pl-5 pr-5">
+            <div class="col-2 pl-5 pr-5">
                 <div class="h2 text-center mb-3">Или</div>
+            </div>
+            <div class="col-5 pl-5 pr-5">
                 <?php $form2 = ActiveForm::begin([
                     'method' => 'POST',
-                    'action' => ['site/random-row']]); ?>
+                    'action' => ['/random']]); ?>
 
                 <?= $form2->field($rowGenerator, 'notFormattedrowSize')
                     ->input('text', ['placeholder' => 'Введите длину ряда', 'class' => 'form-control mb-3'])

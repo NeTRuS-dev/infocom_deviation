@@ -19,7 +19,7 @@ class RowCalculator extends \yii\base\Model
         try {
             Yii::$app->db->createCommand()->batchInsert('rows', ['value'], $row)->execute();
 
-            $result = Yii::$app->db->createCommand('EXEC calculate')->queryOne();
+            $result = Yii::$app->db->createCommand('EXEC calculate')->queryScalar();
         } catch (Exception $e) {
         }
         return $result;

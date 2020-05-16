@@ -46,7 +46,7 @@ class RowGeneratorForm extends \yii\base\Model implements IRowWorker
         $result = [];
         for ($i = 0; $i < $this->row_size; $i++) {
             try {
-                $result[] = random_int(-1000, 1000);
+                $result[] = [random_int(0, 1000)];
             } catch (\Exception $e) {
             }
         }

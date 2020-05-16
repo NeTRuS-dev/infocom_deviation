@@ -38,8 +38,13 @@ $config = [
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                'GET '=>'site/index',
+                'POST random'=>'site/random-row',
+                'POST inputted'=>'site/inputed-row',
+
             ],
         ],
     ],

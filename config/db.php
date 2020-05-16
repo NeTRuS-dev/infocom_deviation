@@ -2,13 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'sqlsrv:Server=HOSTNAME\SQLEXPRESS;Database=Client',
-    'username' => 'root',
+    'dsn' => 'sqlsrv:Server=DESKTOP-RM7NINM\SQLEXPRESS;Database=DeviationDB',
+    'username' => '',
     'password' => '',
     'charset' => 'utf8',
-
-    // Schema cache options (for production environment)
-    //'enableSchemaCache' => true,
-    //'schemaCacheDuration' => 60,
-    //'schemaCache' => 'cache',
 ];

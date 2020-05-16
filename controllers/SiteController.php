@@ -44,7 +44,9 @@ class SiteController extends Controller
             $row = $row_worker->getRow();
             $result = $calc->calculate($row);
             return $this->render('success', [
-                'row' => implode(', ', $row),
+                'row' => implode(', ', array_map(function ($item) {
+                    return $item[0];
+                }, $row)),
                 'result' => $result
             ]);
         } else {
@@ -63,7 +65,9 @@ class SiteController extends Controller
             $row = $row_worker->getRow();
             $result = $calc->calculate($row);
             return $this->render('success', [
-                'row' => implode(', ', $row),
+                'row' => implode(', ', array_map(function ($item) {
+                    return $item[0];
+                }, $row)),
                 'result' => $result
             ]);
 
@@ -73,28 +77,6 @@ class SiteController extends Controller
                 'rowInput' => $row_worker,
             ]);
         }
-    }
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
     }
 
 }
