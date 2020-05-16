@@ -3,12 +3,14 @@
 
 namespace app\models;
 
+use yii\base\Model;
+
 /**
  * Class RowGeneratorForm
  * @package app\models
  * @property-read int rowSize
  */
-class RowGeneratorForm extends \yii\base\Model implements IRowWorker
+class RowGeneratorForm extends Model implements IRowWorker
 {
     public string $notFormattedrowSize;
     private int $row_size;

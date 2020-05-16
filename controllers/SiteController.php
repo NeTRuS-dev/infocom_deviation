@@ -7,7 +7,6 @@ use app\models\RowGeneratorForm;
 use app\models\RowInputForm;
 use Yii;
 use yii\web\Controller;
-use yii\web\Response;
 
 class SiteController extends Controller
 {
@@ -33,7 +32,10 @@ class SiteController extends Controller
     {
         $rowGenerator = new RowGeneratorForm();
         $rowInput = new RowInputForm();
-        return $this->render('index', compact('rowGenerator', 'rowInput'));
+        return $this->render('index', [
+            'rowGenerator' => $rowGenerator,
+            'rowInput' => $rowInput
+        ]);
     }
 
     public function actionRandomRow()
