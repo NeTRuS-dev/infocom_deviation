@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\IRowWorker;
 use app\models\RowCalculator;
 use app\models\RowGeneratorForm;
 use app\models\RowInputForm;
@@ -42,13 +43,7 @@ class SiteController extends Controller
     {
         $row_worker = new RowGeneratorForm();
         if ($row_worker->load(Yii::$app->request->post()) && $row_worker->validate()) {
-            $calc = new RowCalculator();
-            $row = $row_worker->getRow();
-            $result = $calc->calculate($row);
-            return $this->render('success', [
-                'row' => implode(', ', array_column($row, 0)),
-                'result' => $result
-            ]);
+            return $this->render('success', $this->makeCalculations($row_worker));
         } else {
             return $this->render('index', [
                 'rowGenerator' => $row_worker,
@@ -61,20 +56,24 @@ class SiteController extends Controller
     {
         $row_worker = new RowInputForm();
         if ($row_worker->load(Yii::$app->request->post()) && $row_worker->validate()) {
-            $calc = new RowCalculator();
-            $row = $row_worker->getRow();
-            $result = $calc->calculate($row);
-            return $this->render('success', [
-                'row' => implode(', ', array_column($row, 0)),
-                'result' => $result
-            ]);
-
+            return $this->render('success', $this->makeCalculations($row_worker));
         } else {
             return $this->render('index', [
                 'rowGenerator' => new RowGeneratorForm(),
                 'rowInput' => $row_worker,
             ]);
         }
+    }
+
+    private function makeCalculations(IRowWorker $row_worker): array
+    {
+        $calc = new RowCalculator();
+        $row = $row_worker->getRow();
+        $result = $calc->calculate($row);
+        return [
+            'row' => implode(', ', array_column($row, 0)),
+            'result' => $result
+        ];
     }
 
 }
