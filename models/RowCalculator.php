@@ -5,10 +5,10 @@ namespace app\models;
 
 
 use Yii;
-use yii\base\Model;
+use yii\base\BaseObject;
 use yii\db\Exception;
 
-class RowCalculator extends Model
+class RowCalculator extends BaseObject
 {
     /**
      * @param int[] $row
